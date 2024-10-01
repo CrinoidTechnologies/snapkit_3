@@ -83,7 +83,8 @@ class SnapkitPlugin: FlutterPlugin, MethodCallHandler, ActivityAware {
       "isSnapchatInstalled" -> {
         try {
           val pm: PackageManager = requireActivity().packageManager
-          pm.getPackageInfo("com.snapchat.android", PackageInfoFlags.of(0))
+          // is the application installed?
+          pm.getPackageInfo("com.snapchat.android", PackageManager.GET_ACTIVITIES)
           result.success(true)
         } catch (e: PackageManager.NameNotFoundException) {
           result.success(false)
